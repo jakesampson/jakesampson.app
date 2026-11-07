@@ -3,13 +3,21 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="theme-color" content="#f5f4ef">
+		<meta name="theme-color" content="#f4f6ef">
 		<meta name="description" content="Jake Sampson is a software developer and geospatial analyst interested in mapping, data, and building useful software.">
 		<title>Jake Sampson — Software &amp; Geospatial</title>
+		<script>
+			const savedTheme = localStorage.getItem('jakesampson-theme');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			document.documentElement.dataset.theme = savedTheme === 'dark' || savedTheme === 'light'
+				? savedTheme
+				: prefersDark ? 'dark' : 'light';
+		</script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/portfolio.css">
+		<script defer src="assets/js/site-ui.js"></script>
 		<script defer src="assets/js/map.js"></script>
 	</head>
 	<body>
@@ -20,6 +28,10 @@
 				<a href="#expertise">Expertise</a>
 				<a href="#experience">Experience</a>
 				<a class="nav-contact" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+				<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+					<svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+					<svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.6 8.6 0 0 1 8.6 3.8 8.6 8.6 0 1 0 20.2 15.4Z"/></svg>
+				</button>
 			</nav>
 		</header>
 
@@ -38,10 +50,10 @@
 
 				<section class="map-playground" aria-labelledby="map-title">
 					<div class="map-header">
-						<div><p class="map-kicker"><span class="map-kicker-dot"></span> A LITTLE SPATIAL PLAYGROUND</p><h2 id="map-title">Plan an EV stop<span>.</span></h2></div>
+						<div><p class="map-kicker"><span class="map-kicker-dot"></span> A LITTLE SPATIAL PLAYGROUND</p><h2 id="map-title">What does a spatial developer do<span>?</span></h2></div>
 						<span class="map-header-icon" aria-hidden="true">✳</span>
 					</div>
-					<p class="map-instructions" id="map-instructions">Choose a starting point on the road network and adjust your range to see how far you can travel. It’s one way spatial analysis can help turn location data into useful insights.</p>
+					<p class="map-instructions" id="map-instructions">Explore a real-world example: choose a starting point on the road network and adjust your range to see which roads and charging stations are within reach. Spatial analysis turns location data into useful insights.</p>
 					<p class="map-keyboard-instructions" id="map-keyboard-instructions">Focus the map and use the arrow keys to move your starting point.</p>
 					<div class="map-visual">
 						<svg class="map-canvas" id="map" viewBox="0 0 600 400" role="application" aria-labelledby="map-svg-title" aria-describedby="map-instructions map-keyboard-instructions">
@@ -81,6 +93,7 @@
 								<g class="charging-station" data-name="Burnett Highway Recharge" data-node="bundaberg"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
 								<g class="charging-station" data-name="Sunshine Coast Charge" data-node="gympie"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
 								<g class="charging-station" data-name="Darling Downs EV Stop" data-node="toowoomba"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Maranoa Charge" data-node="roma"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
 								<g class="charging-station" data-name="Central West Charge" data-node="longreach"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
 								<g class="charging-station" data-name="Gulf Country Charge" data-node="cloncurry"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
 								<g class="charging-station" data-name="Winton Waypoint Charge" data-node="winton"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
@@ -102,8 +115,8 @@
 					</div>
 					<div class="map-controls">
 						<div class="map-control-heading"><label for="map-distance">Available driving range</label><output id="map-distance-value" for="map-distance">350 km</output></div>
-						<input type="range" id="map-distance" min="50000" max="500000" step="25000" value="350000" aria-valuetext="350 kilometres" disabled>
-						<div class="map-range-labels"><span>50 km</span><span>500 km</span></div>
+						<input type="range" id="map-distance" min="50000" max="600000" step="25000" value="350000" aria-valuetext="350 kilometres" disabled>
+						<div class="map-range-labels"><span>50 km</span><span>600 km</span></div>
 						<div class="map-result" id="map-result" role="status" aria-live="polite">Enable JavaScript to explore the EV map.</div>
 					</div>
 				</section>
