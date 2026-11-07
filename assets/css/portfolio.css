@@ -269,11 +269,23 @@ a:focus-visible {
 	line-height: 1.6;
 }
 
+.map-keyboard-instructions {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
 .map-visual {
 	position: relative;
 	overflow: hidden;
 	border-radius: 18px;
-	background: #e9eee2;
+	background: #eef0ed;
 }
 
 .map-visual:focus-within {
@@ -289,39 +301,98 @@ a:focus-visible {
 	touch-action: manipulation;
 }
 
-.map-radius {
-	fill: rgba(165, 208, 124, .26);
-	stroke: #80ae65;
-	stroke-width: 2;
-	stroke-dasharray: 6 6;
-	pointer-events: none;
-	transition: r .7s cubic-bezier(.2, 1.4, .4, 1);
+.map-water {
+	fill: #b2d0d1;
 }
 
-.map-place {
-	pointer-events: none;
-	opacity: .55;
-	transition: opacity .2s ease;
+.map-terrain {
+	fill: #e2e8de;
 }
 
-.map-place.is-nearby {
-	opacity: 1;
+.map-boundaries {
+	fill: none;
+	stroke: #b8b1aa;
+	stroke-dasharray: 4 7;
+	stroke-linecap: round;
+	stroke-width: 1.5;
 }
 
-.map-place circle {
-	fill: #fffdf6;
-	stroke: #c3d1ba;
-	stroke-width: 2;
-}
-
-.map-place.is-nearby circle {
-	stroke: #86ad6d;
-}
-
-.map-place text {
-	fill: #557a49;
-	font: 700 15px var(--sans);
+.map-regions text {
+	fill: #88837d;
+	font: 10px var(--sans);
+	letter-spacing: .08em;
 	text-anchor: middle;
+}
+
+.map-compass path {
+	fill: #8c8580;
+}
+
+.map-compass text {
+	fill: #8c8580;
+	font: 500 9px var(--mono);
+	text-anchor: middle;
+}
+
+.map-cities circle {
+	fill: #826a64;
+}
+
+.map-cities text {
+	fill: #7e746e;
+	font: 11px var(--sans);
+	paint-order: stroke;
+	stroke: #eef0ed;
+	stroke-linejoin: round;
+	stroke-width: 3px;
+}
+
+.road-network,
+.reachable-network {
+	pointer-events: none;
+}
+
+.road-segment {
+	fill: none;
+	stroke: #fffdf6;
+	stroke-width: 7;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.road-segment.is-highway {
+	stroke-width: 9;
+}
+
+.road-segment.is-regional {
+	stroke-width: 5.5;
+}
+
+.road-line {
+	fill: none;
+	stroke: #b4a78f;
+	stroke-width: 1.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.road-line.is-highway {
+	stroke: #67766c;
+	stroke-width: 3.5;
+}
+
+.road-line.is-regional {
+	stroke: #a69e95;
+	stroke-width: 1.8;
+}
+
+.road-reachable {
+	fill: none;
+	stroke: #80ae65;
+	stroke-width: 4;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	filter: drop-shadow(0 0 2px rgba(255, 255, 255, .9));
 }
 
 .map-origin {
@@ -329,13 +400,61 @@ a:focus-visible {
 }
 
 .map-origin-halo {
-	fill: rgba(48, 96, 59, .18);
+	fill: rgba(255, 255, 255, .84);
+	stroke: #345f3d;
+	stroke-width: 2;
 }
 
-.map-origin-dot {
+.map-origin-marker {
 	fill: #345f3d;
 	stroke: white;
 	stroke-width: 1;
+}
+
+.map-origin-car {
+	fill: none;
+	stroke: white;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 1;
+}
+
+.charging-station {
+	opacity: .62;
+	transition: opacity .2s ease;
+}
+
+.charging-station.is-reachable {
+	opacity: 1;
+}
+
+.station-halo {
+	fill: rgba(255, 255, 255, .72);
+	r: 19px;
+}
+
+.station-marker {
+	fill: #fffdf6;
+	stroke: #839080;
+	stroke-width: 2;
+	transition: fill .2s ease, stroke .2s ease;
+	r: 14px;
+}
+
+.charging-station.is-reachable .station-marker {
+	fill: #d7edbd;
+	stroke: #638e50;
+}
+
+.station-bolt {
+	fill: #748272;
+	transform: scale(1.45);
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+.charging-station.is-reachable .station-bolt {
+	fill: #426d38;
 }
 
 .map-scale {
@@ -400,27 +519,23 @@ a:focus-visible {
 	border-top: 2px solid;
 }
 
-.map-legend-rail {
-	color: #53675b;
-}
-
 .map-legend-road {
 	color: #b8aa91;
 }
 
-.map-legend-river {
-	color: #91bdb4;
+.map-legend-reachable {
+	color: #80ae65;
 }
 
-.map-legend b {
+.map-legend-charger {
 	display: inline-grid;
 	width: 17px;
 	height: 17px;
 	place-items: center;
-	border: 1px solid #c3d1ba;
 	border-radius: 50%;
 	background: #fffdf6;
 	color: #557a49;
+	font-style: normal;
 	font-size: 10px;
 }
 
@@ -518,16 +633,39 @@ a:focus-visible {
 .map-result {
 	margin: 13px 0 0;
 	color: #385d3c;
-	font-size: 11px;
-	font-weight: 700;
-	line-height: 1.6;
-}
-
-.map-note {
-	margin: 5px 0 0;
-	color: #748278;
 	font-size: 10px;
 	line-height: 1.5;
+}
+
+.map-result-count {
+	margin: 0;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.map-result-list {
+	margin: 7px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.map-result-list li {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 6px 0;
+	border-top: 1px solid #e6ebe2;
+	color: #5e6f61;
+	font-size: 10px;
+	line-height: 1.5;
+}
+
+.map-result-distance {
+	flex: 0 0 auto;
+	color: #50763f;
+	font: 500 9px var(--mono);
+	white-space: nowrap;
 }
 
 .hero-index {
@@ -550,6 +688,33 @@ a:focus-visible {
 
 .section-heading .eyebrow {
 	margin-bottom: 24px;
+}
+
+.geo-illustration {
+	display: block;
+	fill: none;
+	stroke: #78916f;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 1.5;
+	opacity: .8;
+}
+
+.geo-illustration circle {
+	fill: var(--paper);
+	stroke-width: 1.5;
+}
+
+.geo-illustration-contour {
+	width: 110px;
+	height: 82px;
+	margin-top: 24px;
+}
+
+.geo-illustration-network {
+	width: 48px;
+	height: 48px;
+	flex: 0 0 auto;
 }
 
 .section-heading h2,
@@ -597,6 +762,12 @@ a:focus-visible {
 	color: var(--muted);
 	font-size: 13px;
 	line-height: 1.7;
+}
+
+.section-aside-wrap {
+	display: flex;
+	align-items: center;
+	gap: 15px;
 }
 
 .expertise-grid {
@@ -686,6 +857,12 @@ a:focus-visible {
 
 .experience-content {
 	padding-top: 10px;
+}
+
+.geo-illustration-survey {
+	width: 104px;
+	height: 80px;
+	margin-top: 24px;
 }
 
 .experience-entry {
@@ -793,6 +970,18 @@ a:focus-visible {
 	gap: 30px;
 }
 
+.geo-illustration-route {
+	width: 98px;
+	height: 84px;
+	align-self: center;
+	stroke: #a9c492;
+	opacity: .85;
+}
+
+.geo-illustration-route circle {
+	fill: var(--ink);
+}
+
 .contact-section .eyebrow {
 	margin-bottom: 20px;
 	color: #afc0ad;
@@ -817,20 +1006,10 @@ a:focus-visible {
 	padding-bottom: 4px;
 }
 
-.contact-email {
-	padding-bottom: 9px;
-	border-bottom: 1px solid #536159;
-	font-size: 16px;
-	font-weight: 600;
-	transition: color .2s ease;
-}
-
-.contact-email:hover,
 .contact-social:hover {
 	color: var(--green);
 }
 
-.contact-email span,
 .contact-social span {
 	margin-left: 8px;
 	color: var(--green);
@@ -1011,8 +1190,13 @@ a:focus-visible {
 		margin-bottom: 30px;
 	}
 
-	.section-aside {
+	.section-aside-wrap {
 		margin-top: 16px;
+		gap: 12px;
+	}
+
+	.section-aside {
+		margin: 0;
 	}
 
 	.expertise-grid {
@@ -1045,6 +1229,12 @@ a:focus-visible {
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 38px;
+	}
+
+	.geo-illustration-route {
+		width: 76px;
+		height: 66px;
+		align-self: flex-start;
 	}
 
 	.contact-section h2 {

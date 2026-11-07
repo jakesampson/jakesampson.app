@@ -27,8 +27,8 @@
 			<section class="hero page-width" aria-labelledby="hero-title">
 				<div class="hero-copy">
 					<p class="eyebrow"><span class="status-dot"></span> SOFTWARE · SPATIAL · DATA</p>
-					<h1 id="hero-title">I build software<br>that understands <span>place.</span></h1>
-					<p class="hero-intro">I’m Jake — a software developer and geospatial analyst who enjoys turning data and ideas into useful things.</p>
+					<h1 id="hero-title">I build spatial<br>solutions for<br><span>the real world.</span></h1>
+					<p class="hero-intro">I’m Jake — a geospatial analyst and developer creating practical solutions to spatial problems, grounded in the real world.</p>
 					<div class="hero-actions">
 						<a class="button button-dark" href="#experience">Explore my work <span aria-hidden="true">↓</span></a>
 						<a class="text-link" href="https://www.linkedin.com/in/jakesampson/">Let’s talk <span aria-hidden="true">↗</span></a>
@@ -38,66 +38,73 @@
 
 				<section class="map-playground" aria-labelledby="map-title">
 					<div class="map-header">
-						<div><p class="map-kicker"><span class="map-kicker-dot"></span> A LITTLE SPATIAL PLAYGROUND</p><h2 id="map-title">What is geospatial<span>?</span></h2></div>
+						<div><p class="map-kicker"><span class="map-kicker-dot"></span> A LITTLE SPATIAL PLAYGROUND</p><h2 id="map-title">Plan an EV stop<span>.</span></h2></div>
 						<span class="map-header-icon" aria-hidden="true">✳</span>
 					</div>
-					<p class="map-instructions" id="map-instructions">Geospatial is data connected to a place. Click or tap the railway map, then set a search distance to find nearby features. Focus the map and use the arrow keys to move your spot.</p>
+					<p class="map-instructions" id="map-instructions">Choose a starting point on the road network and adjust your range to see how far you can travel. It’s one way spatial analysis can help turn location data into useful insights.</p>
+					<p class="map-keyboard-instructions" id="map-keyboard-instructions">Focus the map and use the arrow keys to move your starting point.</p>
 					<div class="map-visual">
-						<svg class="map-canvas" id="map" viewBox="0 0 600 400" role="application" aria-labelledby="map-svg-title" aria-describedby="map-instructions">
-							<title id="map-svg-title">A regional railway map showing features within a selected radius</title>
-							<defs>
-								<path id="main-railway" d="M-25 315 L100 270 L210 235 L310 200 L405 165 L505 125 L625 85"/>
-								<path id="branch-railway" d="M310 200 Q380 280 475 302 T625 326"/>
-							</defs>
-							<rect width="600" height="400" fill="#e9eee2"/>
-							<path d="M360 -20 C345 55 370 95 390 135 S430 200 412 255 395 350 420 420" fill="none" stroke="#91bdb4" stroke-width="3"/>
-							<g fill="#d9e3ce">
-								<path d="M0 12 C66 22 107 3 163 22 S185 73 152 94 94 120 33 104 L0 92Z"/>
-								<path d="M451 0 H600 V72 C562 78 541 105 492 94 S440 46 451 0Z"/>
-								<path d="M0 350 C46 325 73 333 116 345 S170 373 182 400 H0Z"/>
-								<path d="M226 312 C253 290 306 289 332 312 S352 373 320 400 H211 C196 370 201 334 226 312Z"/>
+						<svg class="map-canvas" id="map" viewBox="0 0 600 400" role="application" aria-labelledby="map-svg-title" aria-describedby="map-instructions map-keyboard-instructions">
+							<title id="map-svg-title">A regional map of Queensland showing an electric vehicle range on major roads</title>
+							<rect width="600" height="400" fill="#eef0ed"/>
+							<path class="map-water" d="M408-10H610V410H580C574 393 575 379 567 366S562 347 554 337 550 320 542 310 537 293 527 282 521 263 511 250 507 234 497 221 493 204 484 192 479 175 469 163 460 148 452 136 444 121 435 109 428 93 418 80 414 62 410 48 407 28 408-10Z"/>
+							<path class="map-terrain" d="M16 21C62 3 99 10 126 36s51 24 74 9 44-12 57 4 14 39 1 54-41 22-62 31-31 31-51 38-41-4-55-19-40-18-60-8-34 2-47-10L-5 56Z"/>
+							<path class="map-terrain" d="M105 228c23-20 47-22 67-8s28 36 51 41 35-6 52 3 20 29 8 45-37 18-56 12-36-2-53 9-39 14-58 5-28-29-24-54 2-39 13-53Z"/>
+							<path class="map-terrain" d="M337 246c18-14 40-12 54 3s15 35 31 44 31 10 40 24 4 35-10 45-37 7-51-4-31-12-47-5-36 4-47-8-11-32 0-48 12-42 30-51Z"/>
+							<g class="map-boundaries" aria-hidden="true">
+								<path d="M0 354C125 350 232 358 352 354S501 350 600 358"/>
+								<path d="M0 354V400M352 354V400"/>
 							</g>
-							<g fill="none" stroke="#b8aa91" stroke-width="1.5" stroke-linecap="round">
-								<path d="M210 -20 L210 420 M450 -20 L450 420"/>
-								<path d="M-20 120 C100 140 210 130 315 95 M470 230 C520 220 560 225 620 210"/>
+							<g class="map-regions" aria-hidden="true">
+								<text x="246" y="376">QUEENSLAND</text>
 							</g>
-							<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-								<use href="#main-railway" stroke="#53675b" stroke-width="3"/>
-								<use href="#branch-railway" stroke="#53675b" stroke-width="3"/>
+							<g class="map-compass" transform="translate(30 34)" aria-hidden="true">
+								<path d="M0-15 5 5 0 2-5 5Z"/>
+								<text x="0" y="-19">N</text>
 							</g>
-							<circle id="map-radius" class="map-radius" cx="300" cy="200" r="285.714"/>
-							<g class="map-places">
-								<g class="map-place" data-name="West Station" data-x="100" data-y="270" transform="translate(100 270)"><circle r="15"/><text y="5">S</text></g>
-								<g class="map-place" data-name="Oak Road level crossing" data-x="210" data-y="235" transform="translate(210 235)"><circle r="15"/><text y="5">X</text></g>
-								<g class="map-place" data-name="Central Station" data-x="310" data-y="200" transform="translate(310 200)"><circle r="15"/><text y="5">S</text></g>
-								<g class="map-place" data-name="Central signal" data-x="370" data-y="178" transform="translate(370 178)"><circle r="15"/><text y="5">!</text></g>
-								<g class="map-place" data-name="River bridge" data-x="405" data-y="165" transform="translate(405 165)"><circle r="15"/><text y="5">B</text></g>
-								<g class="map-place" data-name="River Road level crossing" data-x="450" data-y="147" transform="translate(450 147)"><circle r="15"/><text y="5">X</text></g>
-								<g class="map-place" data-name="East Station" data-x="505" data-y="125" transform="translate(505 125)"><circle r="15"/><text y="5">S</text></g>
-								<g class="map-place" data-name="Branch bridge" data-x="410" data-y="279" transform="translate(410 279)"><circle r="15"/><text y="5">B</text></g>
-								<g class="map-place" data-name="Rail depot" data-x="475" data-y="302" transform="translate(475 302)"><circle r="15"/><text y="5">D</text></g>
+							<g id="road-network" class="road-network" aria-hidden="true"></g>
+							<g id="reachable-network" class="reachable-network" aria-hidden="true"></g>
+							<g class="map-cities" aria-hidden="true">
+								<g transform="translate(81 146)"><circle r="3"/><text x="8" y="4">Mount Isa</text></g>
+								<g transform="translate(282 247)"><circle r="3"/><text x="8" y="4">Longreach</text></g>
+								<g transform="translate(386 23)"><circle r="3"/><text x="8" y="4">Cairns</text></g>
+								<g transform="translate(408 91)"><circle r="3"/><text x="8" y="4">Townsville</text></g>
+								<g transform="translate(449 146)"><circle r="3"/><text x="8" y="4">Mackay</text></g>
+								<g transform="translate(480 218)"><circle r="3"/><text x="8" y="4">Rockhampton</text></g>
+								<g transform="translate(547 360)"><circle r="3"/><text x="-8" y="-9" text-anchor="end">Brisbane</text></g>
 							</g>
-							<g id="map-origin" class="map-origin" transform="translate(300 200)">
-								<circle r="4" class="map-origin-halo"/>
-								<circle r="3" class="map-origin-dot"/>
+							<g id="charging-stations" class="charging-stations" aria-hidden="true">
+								<g class="charging-station" data-name="Cape Charge Hub" data-node="cairns"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Tropical North FastCharge" data-node="townsville"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Whitsunday Power Stop" data-node="mackay"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Capricorn Coast Charge" data-node="rockhampton"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Burnett Highway Recharge" data-node="bundaberg"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Sunshine Coast Charge" data-node="gympie"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Darling Downs EV Stop" data-node="toowoomba"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Central West Charge" data-node="longreach"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Gulf Country Charge" data-node="cloncurry"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Winton Waypoint Charge" data-node="winton"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+								<g class="charging-station" data-name="Barcaldine Outback Recharge" data-node="barcaldine"><circle class="station-halo" r="17"/><circle class="station-marker" r="12"/><path class="station-bolt" d="M1-6-3 1h3l-1 5 5-8H1Z"/></g>
+							</g>
+							<g id="map-origin" class="map-origin" transform="translate(300 185)" aria-hidden="true">
+								<circle class="map-origin-halo" r="12"/>
+								<circle class="map-origin-marker" r="8"/>
+								<path class="map-origin-car" d="M-4 1v-3l1-2h6l1 2v3M-4 0h8M-3 2v1m6-1v1"/>
 							</g>
 							<g class="map-scale" aria-hidden="true" transform="translate(24 366)">
-								<path d="M0 0 V6 M0 3 H100 M50 0 V6 M100 0 V6"/>
-								<text x="0" y="-5">0</text><text x="100" y="-5">3.5 km</text>
+								<path d="M0 0V6M0 3H80M40 0V6M80 0V6"/>
+								<text x="0" y="-5">0</text><text x="80" y="-5">200 km</text>
 							</g>
 						</svg>
-						<span class="map-hint" aria-hidden="true">CLICK OR TAP TO EXPLORE <span>↗</span></span>
 					</div>
 					<div class="map-legend" aria-label="Map legend">
-						<span><i class="map-legend-line map-legend-rail"></i> Railway</span><span><i class="map-legend-line map-legend-road"></i> Road</span><span><i class="map-legend-line map-legend-river"></i> River</span>
-						<span><b>S</b> Station</span><span><b>X</b> Crossing</span><span><b>B</b> Bridge</span><span><b>!</b> Signal</span><span><b>D</b> Depot</span>
+						<span><i class="map-legend-line map-legend-road"></i> Road</span><span><i class="map-legend-line map-legend-reachable"></i> In range</span><span><i class="map-legend-charger">ϟ</i> Charging station</span>
 					</div>
 					<div class="map-controls">
-						<div class="map-control-heading"><label for="map-distance">Search radius</label><output id="map-distance-value" for="map-distance">10 km</output></div>
-						<input type="range" id="map-distance" min="100" max="10000" step="100" value="10000" aria-valuetext="10 kilometres" disabled>
-						<div class="map-range-labels"><span>100 m</span><span>10 km</span></div>
-						<p class="map-result" id="map-result" role="status">Enable JavaScript to explore this railway.</p>
-						<p class="map-note">Imaginary region, 21 km across. Distances are straight-line, not along the tracks. Roads, tracks, rivers and markers are symbolic and not shown at actual width.</p>
+						<div class="map-control-heading"><label for="map-distance">Available driving range</label><output id="map-distance-value" for="map-distance">350 km</output></div>
+						<input type="range" id="map-distance" min="50000" max="500000" step="25000" value="350000" aria-valuetext="350 kilometres" disabled>
+						<div class="map-range-labels"><span>50 km</span><span>500 km</span></div>
+						<div class="map-result" id="map-result" role="status" aria-live="polite">Enable JavaScript to explore the EV map.</div>
 					</div>
 				</section>
 				<div class="hero-index" aria-hidden="true">INDEPENDENT THINKING / PRACTICAL ENGINEERING</div>
@@ -107,6 +114,11 @@
 				<div class="section-heading">
 					<p class="eyebrow">01 / A LITTLE ABOUT ME</p>
 					<h2>Technical by nature.<br><span>Curious by default.</span></h2>
+					<svg class="geo-illustration geo-illustration-contour" viewBox="0 0 120 90" aria-hidden="true">
+						<path d="M5 18c18-14 40-14 56-3s36 13 54-2M2 32c20-12 40-10 56 1s38 12 57-1M4 48c17-9 37-8 54 2s36 11 57 1M9 65c15-7 32-6 47 2s35 9 54 3"/>
+						<path d="M67 20c-9 0-16 7-16 16 0 12 16 28 16 28s16-16 16-28c0-9-7-16-16-16Z"/>
+						<circle cx="67" cy="36" r="5"/>
+					</svg>
 				</div>
 				<div class="intro-content">
 					<p class="lead">I’m a developer with a strong interest in how software and spatial data can make complex systems easier to understand and work with.</p>
@@ -122,7 +134,13 @@
 							<p class="eyebrow">02 / WHAT I BRING</p>
 							<h2>Where my skills<br><span>come together.</span></h2>
 						</div>
-						<p class="section-aside">A mix of engineering, spatial thinking, and practical problem-solving.</p>
+						<div class="section-aside-wrap">
+							<svg class="geo-illustration geo-illustration-network" viewBox="0 0 64 64" aria-hidden="true">
+								<path d="M13 46 27 17l24 8-7 24-31-3ZM13 46l31 3M27 17l17 32M13 46l38-21"/>
+								<circle cx="13" cy="46" r="4"/><circle cx="27" cy="17" r="4"/><circle cx="51" cy="25" r="4"/><circle cx="44" cy="49" r="4"/>
+							</svg>
+							<p class="section-aside">A mix of engineering, spatial thinking, and practical problem-solving.</p>
+						</div>
 					</div>
 					<div class="expertise-grid">
 						<article class="expertise-card">
@@ -151,18 +169,25 @@
 				<div class="section-heading">
 					<p class="eyebrow">03 / EXPERIENCE</p>
 					<h2>Building at the<br><span>intersection.</span></h2>
+					<svg class="geo-illustration geo-illustration-survey" viewBox="0 0 112 86" aria-hidden="true">
+						<path d="m12 66 25-43 31 16 30-22M12 66l37-7 49-42M37 23l12 36 19-20"/>
+						<path d="M12 66h86M37 23h39"/>
+						<circle cx="12" cy="66" r="4"/><circle cx="37" cy="23" r="4"/><circle cx="68" cy="39" r="4"/><circle cx="98" cy="17" r="4"/><circle cx="49" cy="59" r="4"/>
+					</svg>
 				</div>
 				<div class="experience-content">
 					<div class="experience-entry experience-entry-secondary">
 						<div class="experience-marker"><span></span></div>
 						<div>
 							<h3>WordPress web development</h3>
+							<p>Highschool Hobby</p>
 						</div>
 					</div>
 					<div class="experience-entry experience-entry-secondary">
 						<div class="experience-marker"><span></span></div>
 						<div>
 							<h3>iOS development</h3>
+							<p>All the cool kids were doing it</p>
 						</div>
 					</div>
 					<div class="experience-entry experience-entry-secondary">
@@ -198,8 +223,13 @@
 						<h2>Have a good<br>problem to solve?</h2>
 						<p>I’m always happy to connect about software, maps, and everything in between.</p>
 					</div>
+					<svg class="geo-illustration geo-illustration-route" viewBox="0 0 112 96" aria-hidden="true">
+						<path d="M15 75c0-14 11-25 25-25h9c12 0 22-10 22-22S61 7 49 7 27 17 27 29"/>
+						<path d="M15 75h44c15 0 27-12 27-27V34"/>
+						<circle cx="15" cy="75" r="5"/><circle cx="49" cy="7" r="5"/><circle cx="86" cy="34" r="5"/>
+						<path d="m75 34 11-11 11 11M4 75h22M15 64v22"/>
+					</svg>
 					<div class="contact-links">
-						<a class="contact-email" href="mailto:jakesampson98@gmail.com">jakesampson98@gmail.com <span aria-hidden="true">↗</span></a>
 						<a class="contact-social" href="https://www.linkedin.com/in/jakesampson/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
 						<a class="contact-social" href="https://github.com/jakesampson" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
 					</div>
